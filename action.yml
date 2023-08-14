@@ -1,0 +1,26 @@
+name: 'Dockerize a Quarkus native GraalVM application'
+description: 'Dockerize a Quarkus native GraalVM application'
+branding:
+  icon: 'arrow-down-circle'
+  color: 'purple'
+inputs:
+    executable:
+      description: 'Path to the main Quarkus executable of the docker image'
+      required: true
+    tag:
+      description: 'Docker tag to set on the image'
+      required: true
+    dockerfile:
+      description: 'Path to the Dockerfile definition'
+      required: true
+      default: Dockerfile
+outputs:
+  image:
+    description: 'Tagged docker image'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.executable }}
+    - ${{ inputs.tag }}
+    - ${{ inputs.dockerfile }}
